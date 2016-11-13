@@ -1,8 +1,13 @@
 package compresser;
+import javafx.geometry.Pos;
+import javafx.scene.control.ProgressBar;
+import javafx.scene.layout.HBox;
+
 import java.io.*;
 /*LZW data compression/expansion*/
 public class LZW {
-	private static final int BITS = 12; //Settting number of bits to 12
+	FileCompression test = new FileCompression();
+	private static final int BITS = 12; //Setting number of bits to 12
 	private static final int HASHING_SHIFT = 4;
 	private static final int MAX_VALUE = (1 << BITS) - 1;
 	private static final int MAX_CODE = MAX_VALUE - 1;
@@ -60,12 +65,13 @@ public class LZW {
 				
 				output_code(output,string_code);
 				string_code = character;
+
 			}
 		
 		output_code(output,string_code);
 		output_code(output,MAX_VALUE);
 		output_code(output,0);
-		System.out.println("");
+		System.out.println(" Successfully compressed");
 		output.close();
 		input.close();
 		}
@@ -146,38 +152,6 @@ public class LZW {
 			output_bit_count -= 8;
 		}
 	
-		
-	}
-	
-	public static void main(String[] args)
-	{
-		File file = new  File("aaa.txt");
-		FileInputStream input = null;
-		FileOutputStream output = null;
-		try {
-			input = new FileInputStream(file);
-			output = new FileOutputStream("compressed.lzw");
-			LZW lzwCompression = new LZW(input,output);
-			lzwCompression.Compress();
-						
-			try 
-			{
-				input.close();
-				output.close();
-			} catch (IOException e)
-			{
-				// TODO Auto-generated catch block
-				e.printStackTrace();
-			}
-			
-		} catch (FileNotFoundException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		}
-		//System.out.println("File compressed. ");
-		
-		
-		
 		
 	}
 	
