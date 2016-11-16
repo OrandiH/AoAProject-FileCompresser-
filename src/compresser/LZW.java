@@ -39,9 +39,11 @@ public class LZW {
 		int i;
 		next_code = 256;
 		//This is where the code table gets built
-		for(i = 0;i<TABLE_SIZE;i++)
+		for(i = 0;i<TABLE_SIZE;i++) {
 			//Starts with a clear string table
 			code_value[i] = -1;
+			// test.updateProgressBar(1, 10);
+		}
 		i=0;
 		try
 		{
